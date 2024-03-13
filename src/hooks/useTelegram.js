@@ -22,4 +22,3 @@ export function useTelegram() {
         queryId: tg.initDataUnsafe?.query_id,
     }
 }
-
