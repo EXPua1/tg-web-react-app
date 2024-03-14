@@ -33,7 +33,7 @@ const ProductList = () => {
 
 
         }
-       fetch('http://localhost:8000',{
+       fetch('http://34.168.57.4:8000',{
            method: 'POST',
            headers: {
                'Content-Type' : 'application/json',
