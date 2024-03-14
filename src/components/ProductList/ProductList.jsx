@@ -1,8 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import './ProductList.css'
-import ProductItem from "../ProductItem/ProductItem";
-import {useTelegram} from "../../hooks/useTelegram";
-
+import React, { useCallback, useEffect, useState } from 'react';
+import './ProductList.css';
+import ProductItem from '../ProductItem/ProductItem';
+import { useTelegram } from '../../hooks/useTelegram';
 
 const products = [
     { id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые' },
@@ -71,7 +70,7 @@ const ProductList = () => {
     return (
         <div className={'list'}>
             {products.map((item) => (
-                <ProductItem product={item} onAdd={onAdd} className={'item'} />
+                <ProductItem key={item.id} product={item} onAdd={onAdd} className={'item'} />
             ))}
         </div>
     );
