@@ -30,7 +30,7 @@ const ProductList = () => {
             queryId: queryId,
         };
 
-        fetch('https://storied-entremet-88d966.netlify.app:8000/web-data', {
+        fetch('http://34.125.61.101:8000/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json', // Используем application/json для JSON данных
