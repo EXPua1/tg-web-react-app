@@ -1,8 +1,7 @@
-import React, {useCallback, useEffect, useState} from 'react';
-import './ProductList.css'
-import ProductItem from "../ProductItem/ProductItem";
-import {useTelegram} from "../../hooks/useTelegram";
-
+import React, { useCallback, useEffect, useState } from 'react';
+import './ProductList.css';
+import ProductItem from '../ProductItem/ProductItem';
+import { useTelegram } from '../../hooks/useTelegram';
 
 const products = [
     { id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые' },
@@ -23,20 +22,35 @@ const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
     const { tg, queryId } = useTelegram();
 
-    const onSendData = useCallback(() => {
-        const data = {
-            products: addedItems,
-            totalPrice: getTotalPrice(addedItems),
-            queryId: queryId,
-        };
+    const onSendData = useCallback(async () => {
+        try {
+            const data = {
+                products: addedItems,
+                totalPrice: getTotalPrice(addedItems),
+                queryId: queryId,
+            };
 
-        fetch('https://34.168.57.4:3000/web-data', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json', // Используем application/json для JSON данных
-            },
-            body: JSON.stringify(data),
-        });
+            const response = await fetch('https://34.168.57.4:3000/web-data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json', // Используем application/json для JSON данных
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to send data to the server');
+            }
+
+            const responseData = await response.json();
+            console.log('Data sent successfully:', responseData);
+
+            // Добавьте здесь код для обработки успешной отправки данных, если необходимо
+
+        } catch (error) {
+            console.error('Error:', error);
+            // Добавьте здесь код для обработки ошибки при отправке данных
+        }
     }, [addedItems, queryId]);
 
     useEffect(() => {
@@ -71,7 +85,7 @@ const ProductList = () => {
     return (
         <div className={'list'}>
             {products.map((item) => (
-                <ProductItem product={item} onAdd={onAdd} className={'item'} />
+                <ProductItem key={item.id} product={item} onAdd={onAdd} className={'item'} />
             ))}
         </div>
     );
