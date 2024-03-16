@@ -23,7 +23,7 @@ const getTotalPrice = (items = []) => {
 }
 
 const ProductList = () => {
-    const [addedItems, setAddedItems] = useState([]);
+    const [addedItems, setAddedItems] = useState();
     const [response, setResponse] = useState();
     const {tg, queryId} = useTelegram();
 
