@@ -3,6 +3,7 @@ import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
+import {json} from "react-router-dom";
 
 const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
@@ -75,7 +76,7 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            resp: {response}
+            resp: {JSON.stringify(response)}
             {products.map(item => (
                 <ProductItem
                     product={item}
