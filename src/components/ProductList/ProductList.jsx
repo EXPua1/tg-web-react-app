@@ -33,7 +33,7 @@ const ProductList = () => {
             totalPrice: getTotalPrice(addedItems),
             queryId,
         }
-        fetch('http://34.125.61.101', {
+        fetch('https://tg.kitzen.dev/web-data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
