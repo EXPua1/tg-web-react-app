@@ -24,6 +24,7 @@ const getTotalPrice = (items = []) => {
 
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
+    const [response, setResponse] = useState('nihua');
     const {tg, queryId} = useTelegram();
 
     const onSendData = useCallback(() => {
@@ -38,7 +39,10 @@ const ProductList = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        })
+        }).then((r) => {
+            setResponse(r);
+
+        }).catch(e => setResponse(e));
     }, [addedItems])
 
     useEffect(() => {
