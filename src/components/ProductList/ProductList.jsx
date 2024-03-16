@@ -3,7 +3,6 @@ import './ProductList.css';
 import ProductItem from "../ProductItem/ProductItem";
 import {useTelegram} from "../../hooks/useTelegram";
 import {useCallback, useEffect} from "react";
-import {json} from "react-router-dom";
 
 const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
@@ -23,8 +22,7 @@ const getTotalPrice = (items = []) => {
 }
 
 const ProductList = () => {
-    const [addedItems, setAddedItems] = useState();
-    const [response, setResponse] = useState();
+    const [addedItems, setAddedItems] = useState([]);
     const {tg, queryId} = useTelegram();
 
     const onSendData = useCallback(() => {
@@ -39,10 +37,7 @@ const ProductList = () => {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
-        }).then((r) => {
-            setResponse(r);
-
-        }).catch(e => setResponse(e));
+        })
     }, [addedItems])
 
     useEffect(() => {
@@ -76,7 +71,6 @@ const ProductList = () => {
 
     return (
         <div className={'list'}>
-            resp: {JSON.stringify(response)}
             {products.map(item => (
                 <ProductItem
                     product={item}
