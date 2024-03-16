@@ -29,7 +29,7 @@ const ProductList = () => {
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
-            tg: queryId,
+            queryId,
         }
         fetch('http://34.125.61.101:8000/web-data', {
             method: 'POST',
