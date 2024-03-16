@@ -24,7 +24,6 @@ const getTotalPrice = (items = []) => {
 
 const ProductList = () => {
     const [addedItems, setAddedItems] = useState([]);
-    const [response, setResponse] = useState('nihua');
     const {tg, queryId} = useTelegram();
 
     const onSendData = useCallback(() => {
