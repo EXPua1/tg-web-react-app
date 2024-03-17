@@ -9,16 +9,16 @@ const ProductItem = ({product, className, onAdd}) => {
 
     return (
         <div className={'product ' + className}>
-            <div className={'img'} style={{backgroundImage: `url(${process.env.PUBLIC_URL}/${product.image})`}}/>
+            <div className={'img'} style={{backgroundImage: `url(${process.env.PUBLIC_URL}/picture/${product.image})`}}/>
             <div className={'title'}>{product.title}</div>
             <div className={'description'}>{product.description}</div>
             <div className={'price'}/>
-                <span>Стоимость: <b>{product.price}</b></span>
+            <span>Стоимость: <b>{product.price}</b></span>
 
 
-        <Button className={'add-btn'} onClick={onAddHandler}>
-            Добавить в корзину
-        </Button>
+            <Button className={'add-btn'} onClick={onAddHandler}>
+                Добавить в корзину
+            </Button>
         </div>
     )
 };
